@@ -3,12 +3,19 @@ import cvzone
 from cvzone.FaceMeshModule import FaceMeshDetector
 from ultralytics import YOLO
 import pygame
+import os
 
 # Initialize Pygame Mixer
 pygame.mixer.init()
-alarm_sleep = pygame.mixer.Sound("alarm.mp3")       # Sleep alarm
-alarm_facehide = pygame.mixer.Sound("faudio.mp3")   # Face hidden/covered alarm
-alarm_phone = pygame.mixer.Sound("paudio.mp3")      # Phone alarm
+
+# Get the folder containing app.py
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Load alarm sounds using absolute paths
+alarm_sleep = pygame.mixer.Sound(os.path.join(BASE_DIR, "alarm.mp3"))
+alarm_facehide = pygame.mixer.Sound(os.path.join(BASE_DIR, "faudio.mp3"))
+alarm_phone = pygame.mixer.Sound(os.path.join(BASE_DIR, "paudio.mp3"))
+
 
 # Track active audio state ('sleep', 'facehide', 'phone', or None)
 current_playing = None
